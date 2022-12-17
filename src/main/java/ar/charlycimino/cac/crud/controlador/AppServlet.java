@@ -25,6 +25,7 @@ public class AppServlet extends HttpServlet {
     private static final String URI_LIST = "WEB-INF/pages/alumnos/listadoAlumnos.jsp";
     private static final String URI_REMOVE = "WEB-INF/pages/alumnos/borrarAlumno.jsp";
     private static final String URI_EDIT = "WEB-INF/pages/alumnos/editarAlumno.jsp";
+    private static final String URI_DETAIL = "WEB-INF/pages/alumnos/detalleAlumno.jsp";
 
     @Override
     public void init() throws ServletException {
@@ -50,6 +51,12 @@ public class AppServlet extends HttpServlet {
                 req.setAttribute("yaTieneFoto", !alu.getFoto().contains("no-face"));
                 req.getRequestDispatcher(URI_EDIT).forward(req, resp);
                 break;
+            case "detail":
+                Alumno alum = model.getAlumno(id);
+                req.setAttribute("detalleAlumno", alum);
+                req.setAttribute("yaTieneFoto", !alum.getFoto().contains("no-face"));
+                req.getRequestDispatcher(URI_DETAIL).forward(req, resp);
+                break;
             default:
                 req.setAttribute("listaAlumnos", model.getAlumnos());
                 req.getRequestDispatcher(URI_LIST).forward(req, resp);
@@ -73,6 +80,11 @@ public class AppServlet extends HttpServlet {
                 Alumno aluEditar = model.getAlumno(id);
                 cargarAlumnoSegunParams(aluEditar, req);
                 model.updateAlumno(aluEditar);
+                break;
+            case "detail":
+                Alumno aluDetalle = model.getAlumno(id);
+                cargarAlumnoSegunParams(aluDetalle, req);
+                model.updateAlumno(aluDetalle);
                 break;
             case "add":
                 Alumno aluAgregar = new Alumno();

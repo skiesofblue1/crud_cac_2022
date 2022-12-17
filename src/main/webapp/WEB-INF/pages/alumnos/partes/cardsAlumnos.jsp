@@ -9,7 +9,7 @@
             <div class="card-footer">
                 <div class="row justify-content-center">
                     <div class="col-4">
-                        <a href="${pageContext.request.contextPath}/tarea.jsp" class="btn bg-info w-100"><i class="bi bi-eye"></i></a>
+                        <a href="${pageContext.request.contextPath}/app?accion=detail&id=${alumno.id}" class="btn bg-info w-100"><i class="bi bi-eye"></i></a>
                     </div>
                     <div class="col-4">
                         <a href="${pageContext.request.contextPath}/app?accion=edit&id=${alumno.id}" class="btn bg-warning w-100"><i class="bi bi-pencil"></i></a>
